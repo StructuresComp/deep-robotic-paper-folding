@@ -1,0 +1,10 @@
+deltaTime 5e-2
+tol 1.0e-5
+stol 1.0e-5
+maxIter 100
+viscosity 0.01
+render 1
+saveData 1
+flagforcontact 0
+hangLength 3
+filename RodOnPlane_measureForce/parse/parsePoint.txt

@@ -1,0 +1,8 @@
+deltaTime 1e-2
+tol 1.0e-5
+stol 1.0e-5
+maxIter 100
+viscosity 0.001
+render 0
+saveData 1
+hangLength 0.5340555869608195
