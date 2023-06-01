@@ -5,8 +5,8 @@ import matplotlib.colors as colors
 from matplotlib.cm import ScalarMappable
 from scipy.spatial.transform import Rotation as R
 from shapely.geometry import Polygon
-from neural_force_manifold import NeuralForceManifold
-from utils import get_penalty_outline, float_tensor, get_numpy, ON_GPU
+from nfm.neural_force_manifold import NeuralForceManifold
+from nfm.utils import get_penalty_outline, float_tensor, get_numpy, ON_GPU
 
 
 class FoldingPlanner:
@@ -18,7 +18,7 @@ class FoldingPlanner:
         else:
             self._device = 'cpu'
 
-        with open("misc_data/workspace_outline.pkl", "rb") as f:
+        with open("nfm/misc_data/workspace_outline.pkl", "rb") as f:
             self._ws_edges = pickle.load(f)
 
         self.lgb_o = lgb_o

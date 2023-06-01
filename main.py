@@ -1,6 +1,5 @@
 import numpy as np
-from astar import astar
-from folding_planner import FoldingPlanner
+from nfm import astar, FoldingPlanner
 
 """
 This is the Lgb value of the original training set. 

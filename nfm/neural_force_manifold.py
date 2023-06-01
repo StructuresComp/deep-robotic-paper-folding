@@ -2,7 +2,7 @@ import numpy as np
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from utils import float_tensor, get_numpy, ON_GPU
+from nfm.utils import float_tensor, get_numpy, ON_GPU
 
 
 """ Network is outfitted with default args for use of the pretrained model from the manuscript. """
@@ -10,7 +10,7 @@ from utils import float_tensor, get_numpy, ON_GPU
 
 class NeuralForceManifold(nn.Module):
     def __init__(self, input_size=2, output_size=4, hidden_layer_units=(392,)*4,
-                 model_weights="models/model_weights.pth", lgb=0.036546586993887034,
+                 model_weights="nfm/models/model_weights.pth", lgb=0.036546586993887034,
                  means=np.array([0.14337862625005493, 0.0668542666984968]).reshape((1, 2)),
                  stds=np.array([0.12099335598019705, 0.05941409095964373]).reshape((1, 2))):
         super(NeuralForceManifold, self).__init__()
