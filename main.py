@@ -26,6 +26,9 @@ fp = FoldingPlanner(Lgb_o, Lgb_n)
 delta_r = 0.002
 delta = delta_r / Lgb_o
 
+# Suspended length penalty region (we used 0.041 for origami paper)
+ls_penalty_r = 0.035
+
 # Penalty to disallow gripper going below a certain z-point. Can be None
 height_penalty = 0.0125 / Lgb_o
 # height_penalty = None
@@ -37,7 +40,8 @@ goal = (0.287 / Lgb_n, 0.03 / Lgb_n)
 start_grid = (round(start[0] / delta), round(start[1] / delta))
 goal_grid = (round(goal[0] / delta), round(goal[1] / delta))
 
-manifold, manifold_with_penalty, penalty_boundary = fp.construct_discretized_manifold(discretization=delta_r)
+manifold, manifold_with_penalty, penalty_boundary = fp.construct_discretized_manifold(discretization=delta_r,
+                                                                                      ls_threshold=ls_penalty_r)
 
 # Generate global optimal trajectory.
 # Not using a heuristic. A* then degenerates to uniform cost search (UCS).
