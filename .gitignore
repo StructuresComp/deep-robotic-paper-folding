@@ -4,3 +4,5 @@ simulation/datafiles/
 simulation/parse/
 simulation/simBC
 simulation/simF
+.idea/
+__pycache__
