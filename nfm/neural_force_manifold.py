@@ -10,7 +10,7 @@ from nfm.utils import float_tensor, get_numpy, ON_GPU
 
 class NeuralForceManifold(nn.Module):
     def __init__(self, input_size=2, output_size=4, hidden_layer_units=(392,)*4,
-                 model_weights="nfm/models/model_weights.pth", lgb=0.036546586993887034,
+                 model_weights="nfm/models/model_weights.pth",
                  means=np.array([0.14337862625005493, 0.0668542666984968]).reshape((1, 2)),
                  stds=np.array([0.12099335598019705, 0.05941409095964373]).reshape((1, 2))):
         super(NeuralForceManifold, self).__init__()
@@ -21,9 +21,6 @@ class NeuralForceManifold(nn.Module):
         for i in range(1, len(hidden_layer_units)):
             self.layers.append(nn.Linear(hidden_layer_units[i-1], hidden_layer_units[i]))
         self.layers.append(nn.Linear(hidden_layer_units[-1], self.output_size))
-
-        # Lgb of original training dataset. We trained using a single material + shape.
-        self.lgb = lgb
 
         # Mean and std of the original training dataset
         self.means = means
@@ -41,7 +38,6 @@ class NeuralForceManifold(nn.Module):
 
     def preprocess_input(self, orig_data):
         data = orig_data.copy()
-        # data[:] *= self.lgb
         data[:] -= self.means
         data[:] /= self.stds
         return data, float_tensor(data)
@@ -49,7 +45,6 @@ class NeuralForceManifold(nn.Module):
     def revert_data(self, data):
         data[:] *= self.stds
         data[:] += self.means
-        # data[:] /= self.lgb
 
     # The gradients of NFM were not used in the final method.
     # This is some code that was used when exploring a gradient descent based path planning approach.
