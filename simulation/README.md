@@ -4,20 +4,20 @@ Discrete differentiable geometry (DDG)-based simulations for generating training
 All code tested and developed on **Ubuntu 20.04.4 LTS** using **Python 3.9.12** and **C++11**.
 ***
 #### How to use
-First, complie the C files in the folders "RodOnPlane_find_boundary" and "RodOnPlane_measureForce" with makefile inside seperately. 
+First, create a "build" folder under the "simulation" folder, then go to that folder
 ```bash
-cd RodOnPlane_find_boundary  # go to source code directory 1
-make
-cd ..
-cd RodOnPlane_measureForce  # go to source code directory 2
-make
+mkdir build && cd build # go to the build folder
 ```
-When the executable programs are created, navigate back to the root folder and find the python file "createSearchP.py". Implement this file to generate the corresponding avaiable paper folding data for a fixed suspended length. Inside this file, users can edit variables "ls" and "samplingRate" to change the fixed value of normalized suspended length and the sampling distance in the workspace. For example
+Then, use the cmake command to compile the configuration of the simulation programs
 ```bash
-ls = 2  # set the normalized suspended value is 2
-samplingRate = 1e-2 # sampling a point each 1e-2 length in the available region with ls = 2
+cmake ..
 ```
-The option.txt contains all simulation settings. Here describes the details of each parameter (unitless):
+Finally, compile the programs, the simulation programs "simF" and "simBC" will appear under the "simulation" folder.
+```bash
+make -j4
+```
+
+The optionB.txt and optionF.txt contains all simulation settings. Here describes the details of each parameter (unitless):
 - ```tol``` and ```stol``` - Small numbers used in solving the linear system. Fraction of a percent, e.g. 1.0e-3, is often a good choice.
 - ```maxIter``` - Maximum number of iterations allowed before the solver quits. 
 - ```viscosity``` - Viscosity for applying damping forces.
