@@ -124,7 +124,7 @@ class FoldingPlanner:
 
                     change += abs(y_i - y_i_saved)
 
-        new_traj_tensor = self._nn.preprocess_input(new_traj[:, :2])[1]
+        new_traj_tensor = self._nn.preprocess_input(new_traj[:, :2] * self.lgb_o)[1]
         if start_alpha is None:
             new_traj[:, 2] = get_numpy(self._nn(new_traj_tensor)[:, 0])
         else:
