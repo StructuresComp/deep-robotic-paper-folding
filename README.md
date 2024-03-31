@@ -8,7 +8,7 @@ The numerical simulation framework in the `simulation` folder generates the trai
 By running `main.py`, the optimal folding trajectories can be generated in the pre-trained neural force manifold mode.
 
 <p align="center">
-<img src="images/knot_tying.png" alt>
+<img src="introduction.png" alt>
 <br>
 <em> Figure 1. Comparison between an intuitive baseline and the designed optimal manipulations for paper folding. </em>
 </p>
